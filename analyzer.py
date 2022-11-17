@@ -1,7 +1,7 @@
 import csv
 import string
 
-filename = input("Enter the name of the file you would like to read...")
+filename = "test.txt" # input("Enter the name of the file you would like to read...")
 
 words = set()
 
@@ -23,10 +23,12 @@ with open('unigram_freq.csv', 'r') as csv_file:
         words.add(row[0])
         counter += 1
 
+punctuation = string.punctuation + "“”’"
+
 with open(filename, 'r', encoding="utf8") as text_file:
     for line in text_file:
         for word in line.split():
-            transformed_word = word.lower().translate(str.maketrans('', '', string.punctuation))
+            transformed_word = word.lower().translate(str.maketrans('', '', punctuation))
             if transformed_word not in words:
                 print(transformed_word)
 
